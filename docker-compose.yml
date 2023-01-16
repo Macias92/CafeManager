@@ -10,7 +10,7 @@ services:
       - '8001:5432'
     restart: always
 
-  mono_django:
+  cafe_manager:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
