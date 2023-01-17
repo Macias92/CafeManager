@@ -1,6 +1,6 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.models import PermissionMixin, AbstractBaseUser, BaseUserManager
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import PermissionsMixin, AbstractBaseUser, BaseUserManager
 
 from .common import ROLES
 
@@ -67,7 +67,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
 
-class CustomUser(AbstractBaseUser, PermissionMixin):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
@@ -78,6 +78,14 @@ class CustomUser(AbstractBaseUser, PermissionMixin):
     is_staff = models.BooleanField(default=False)
     role = models.PositiveIntegerField(
         _("User role"), choices=ROLES, default=1)
+
+    join_date = models.DateTimeField(
+        _("User join date"),
+        auto_now_add=True)
+
+    last_login = models.DateTimeField(
+        _("Last login date"),
+        auto_now_add=True)
 
     objects = CustomUserManager()
     USERNAME_FIELD = 'username'

@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # my apps
     'corsheaders',
     'rest_framework',
     
+    # my apps
+    'authx',
 ]
 
 MIDDLEWARE = [
@@ -55,11 +55,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'authx.middleware.SetLastUserLogin',  # middleware created by me
     
     
 ]
 
 ROOT_URLCONF = 'cafemanager.urls'
+
+AUTH_USER_MODEL = 'authx.CustomUser'  # replace default class 'User'
 
 TEMPLATES = [
     {
