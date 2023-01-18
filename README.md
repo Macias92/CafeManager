@@ -3,7 +3,7 @@ Web application allows to manage a Cafe, includes managing factory, menu, servic
 
 # Used Technologies
 - Python 3.8
-- Django 3.12
+- Django 3.2.16
 - Django REST Framework
 - Django cors headers
 - Docker
