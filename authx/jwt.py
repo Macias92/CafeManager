@@ -17,7 +17,7 @@ def decode_jwt(input):
 
 def base64url_encode(input):
     bytesString = input.encode('ascii')
-    return base64url_encode(bytesString).decode('utf-8')
+    return base64.urlsafe_b64encode(bytesString).decode('utf-8')
 
 
 def create_jwt(payload):
