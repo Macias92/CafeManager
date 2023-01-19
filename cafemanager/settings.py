@@ -163,3 +163,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# If you want to use your own email domain fill gaps below:
+# EMAIL_HOST = ''
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+
+# more info here: https"//docs.djangoprojects.com/en/4.0/topics/email/
+
+DEFAULT_FROM_EMAIL = 'test@test.com'
