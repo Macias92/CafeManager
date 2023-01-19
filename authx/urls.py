@@ -2,7 +2,7 @@ from rest_framework.routers import DefaultRouter
 from django.urls.conf import include, path
 from django.urls import re_path
 from .viewsets import UserViewSet
-from .views import LoginView
+# from .views import LoginView
 
 router = DefaultRouter()
 router.register(
@@ -14,7 +14,7 @@ router.register(
 
 urlpatterns = [
     re_path(r'', include(router.urls)),
-    path('login', LoginView.as_view(), name='login'),
-    
+    # path('login', LoginView.as_view(), name='login'),
+
 
 ]
