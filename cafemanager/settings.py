@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     # my apps
     'authx',
+    'store',
+    'supplier',
+
 ]
 
 MIDDLEWARE = [
