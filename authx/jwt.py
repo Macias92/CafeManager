@@ -6,10 +6,11 @@ import json
 import hmac
 import hashlib
 
+
 def defaultconverter(c):
     if isinstance(c, datetime):
         return c.__str__()
-    
+
 
 def decode_jwt(input):
     return base64.urlsafe_b64decode(input)
@@ -21,15 +22,16 @@ def base64url_encode(input):
 
 
 def create_jwt(payload):
-    
+
     header = {
         "alg": "HS256",
         "typ": "JWT",
     }
-    
+
     secret_key = settings.SECRET_KEY
-    total_params = str(base64url_encode(json.dumps(header))) + "." + str(base64url_encode(json.dumps(payload, default=defaultconverter)))
-    signature = hmac.new(secret_key.encode(), total_params.encode(), hashlib.sha256).hexdigest()
+    total_params = str(base64url_encode(json.dumps(header))) + "." + \
+        str(base64url_encode(json.dumps(payload, default=defaultconverter)))
+    signature = hmac.new(secret_key.encode(),
+                         total_params.encode(), hashlib.sha256).hexdigest()
     token = total_params + "." + str(base64url_encode(signature))
     return token
-

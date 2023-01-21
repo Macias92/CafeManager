@@ -2,7 +2,6 @@ import json
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
-from rest_framework import authentication
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed, ValidationError
 
@@ -52,8 +51,9 @@ class TokenAuthentication(BaseAuthentication):
         except User.DoesNotExist:
             raise AuthenticationFailed(
                 _("User not found!"), code="user_not_found")
-            
+
         if not user.is_active:
-            raise AuthenticationFailed(_("User is inactive!"), code="user_inactve")
+            raise AuthenticationFailed(
+                _("User is inactive!"), code="user_inactve")
 
         return user

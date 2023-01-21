@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os 
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    
+
     # my apps
     'authx',
 ]
@@ -49,15 +49,15 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # corsheaders
-    'django.middleware.locale.LocaleMiddleware',    
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'authx.middleware.SetLastUserLogin',  # middleware created by me
-    
-    
+
+
 ]
 
 ROOT_URLCONF = 'cafemanager.urls'
@@ -153,7 +153,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Settings for Django Rest Framework
 REST_FRAMEWORK = {
-    
+
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'authx.authentication.TokenAuthentication',
     ],
@@ -165,7 +165,11 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'test@test.com'
+
 # If you want to use your own email domain fill gaps below:
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = ''
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
@@ -173,5 +177,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST_PASSWORD = ''
 
 # more info here: https"//docs.djangoprojects.com/en/4.0/topics/email/
-
-DEFAULT_FROM_EMAIL = 'test@test.com'
