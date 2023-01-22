@@ -1,7 +1,7 @@
 from rest_framework.serializers import (
     ModelSerializer, 
     SlugRelatedField, 
-    # PrimaryKeyRelatedField
+    PrimaryKeyRelatedField
     )
 from store.serializers import BaristaIngredientSerializer, ManagerIngredientSerializer
 from .models import Menu, MenuItem, Component
@@ -58,9 +58,9 @@ class CashierMenuSerializer(BaseMenuSerializer):
     items = CashierMenuItemSerializer(read_only=True, many=True)
 
 
-# class CreateMenuItemSerializer(BaseItemSerializer):
-#     ingredients = PrimaryKeyRelatedField(many=True, queryset=Component.objects.all())
+class CreateMenuItemSerializer(BaseItemSerializer):
+    ingredients = PrimaryKeyRelatedField(many=True, queryset=Component.objects.all())
 
 
-# class CreateMenuSerializer(BaseMenuSerializer):
-#     items = PrimaryKeyRelatedField(many=True, queryset=MenuItem.objects.all())
+class CreateMenuSerializer(BaseMenuSerializer):
+    items = PrimaryKeyRelatedField(many=True, queryset=MenuItem.objects.all())

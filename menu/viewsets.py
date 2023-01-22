@@ -9,9 +9,9 @@ from .serializers import (
     ManagerMenuItemSerializer,
     ComponentSerializer,
     ManagerComponentSerializer,
-    # CreateMenuItemSerializer,
-    # CreateMenuSerializer,
-
+    CreateMenuItemSerializer,
+    CreateMenuSerializer,
+    
 )
 from .models import Menu, MenuItem, Component
 
@@ -24,12 +24,12 @@ class MenuViewSet(ModelViewSet):
         if self.request.user.role == 1:
             return CashierMenuSerializer
         elif self.request.user.role >= 3:
-            # if self.action in ['update', 'partial_update', 'create']:
-            #     return CreateMenuSerializer
+            if self.action in ['update', 'partial_update', 'create']:
+                return CreateMenuSerializer
             return AdminMenuSerializer
         else:
-            # if self.action in ['update', 'partial_update', 'create']:
-            #     return CreateMenuSerializer
+            if self.action in ['update', 'partial_update', 'create']:
+                return CreateMenuSerializer
             return MenuSerializer
 
 
@@ -41,12 +41,12 @@ class MenuItemViewSet(ModelViewSet):
         if self.request.user.role == 1:
             return CashierMenuItemSerializer
         elif self.request.user.role >= 3:
-            # if self.action in ['update', 'partial_update', 'create']:
-            #     return CreateMenuItemSerializer
+            if self.action in ['update', 'partial_update', 'create']:
+                return CreateMenuItemSerializer
             return ManagerMenuItemSerializer
         else:
-            # if self.action in ['update', 'partial_update', 'create']:
-            #     return CreateMenuItemSerializer
+            if self.action in ['update', 'partial_update', 'create']:
+                return CreateMenuItemSerializer
             return MenuItemSerializer
 
 
