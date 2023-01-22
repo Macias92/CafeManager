@@ -8,7 +8,7 @@ class Component(models.Model):
 
     @property
     def name(self):
-        return f"{self.ingredient.name} - {self.quantity} {self.ingredient.get_unit_dsplay()}"
+        return f"{self.ingredient.name} - {self.quantity} {self.ingredient.get_unit_display()}"
 
     def __str__(self):
         return self.name
@@ -31,3 +31,6 @@ class MenuItem(models.Model):
 class Menu(models.Model):
     name = models.CharField(max_length=64, null=False, blank=False)
     items = models.ManyToManyField(MenuItem)
+    
+    def __str__(self):
+        return f"{self.name}"

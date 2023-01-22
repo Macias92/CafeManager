@@ -10,7 +10,7 @@ from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from authx.permissions import IsownerUser
+from authx.permissions import IsOwnerUser
 from .serializers import UserSerializer
 
 
@@ -20,7 +20,7 @@ User = get_user_model()
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsownerUser]
+    permission_classes = [IsOwnerUser]
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
