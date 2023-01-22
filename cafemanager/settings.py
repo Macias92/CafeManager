@@ -44,8 +44,10 @@ INSTALLED_APPS = [
     # my apps
     'authx',
     'menu',
+    'purchase',
     'store',
     'supplier',
+
 
 ]
 
