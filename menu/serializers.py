@@ -39,7 +39,7 @@ class ManagerMenuItemSerializer(BaseItemSerializer):
 
 class CashierMenuItemSerializer(BaseItemSerializer):
     ingredients = SlugRelatedField(
-        many=True, read_olny=True, slug_field='name')
+        many=True, read_only=True, slug_field='name')
 
 
 class MenuSerializer(BaseMenuSerializer):
@@ -50,5 +50,5 @@ class AdminMenuSerializer(BaseMenuSerializer):
     items = ManagerMenuItemSerializer(read_only=True, many=True)
 
 
-class CashierMenuSerialzer(BaseMenuSerializer):
+class CashierMenuSerializer(BaseMenuSerializer):
     items = CashierMenuItemSerializer(read_only=True, many=True)
