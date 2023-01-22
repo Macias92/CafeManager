@@ -21,4 +21,8 @@ urlpatterns = [
     path('auth-api/', include('rest_framework.urls')),
     path('rest-api/v1/', include('cafemanager.api')),
     
+    path('menu/', include('menu.urls')),
+    path('store/', include('store.urls')),
+    path('supplier/', include('supplier.urls')),
+        
 ]
