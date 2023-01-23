@@ -17,6 +17,7 @@ class PurchaseOrder(models.Model):
         (2, _("Pending")),
         (3, _("Ready")),
         (4, _("Retrieved")),
+        (5, _("Cancelled")),
     )
     items = models.ManyToManyField(MenuItem)
     status = models.PositiveIntegerField(choices=STATUS_CHOICE, default=1)

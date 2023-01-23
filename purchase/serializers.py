@@ -24,19 +24,24 @@ class PurchaseOrderSeralizer(ModelSerializer):
 
     class Meta:
         model = PurchaseOrder
-        felds = "__all__"
+        fields = "__all__"
 
 
-class CreatePurchaseOrderSerializer(ModelSerializer):
+class CreatePurchaseOrderSerializer(PurchaseOrderSeralizer):
+    items = PrimaryKeyRelatedField(many=True, queryset=MenuItem.objects.all())
+
     def to_internal_value(self, data):
         today = datetime.now()
         count_today = PurchaseOrder.objects.filter(
             created_date__date=today).count()+1
+        user = None
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            user = request.user
         data['order_number'] = f"{today.strftime('%d%m%y')}_{count_today}"
+        data['created_by'] = user.pk
 
         return super(CreatePurchaseOrderSerializer, self).to_internal_value(data)
-
-    items = PrimaryKeyRelatedField(many=True, queryset=MenuItem.objects.all())
 
     def validate(self, data):
         all_quantity = {}
@@ -54,3 +59,10 @@ class CreatePurchaseOrderSerializer(ModelSerializer):
                 raise ValidationError(_("No ingredients!"))
 
         return super(CreatePurchaseOrderSerializer, self).validate(data)
+
+
+class PurchaseOrderCancellingSerializer(ModelSerializer):
+    class Meta:
+        model = PurchaseOrder
+        fields = ['status', 'order_number']
+        read_only_fields = ['status', 'order_number']

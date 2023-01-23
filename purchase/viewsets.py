@@ -1,4 +1,10 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin
+)
 from authx.permissions import IsCashierUser
 from .serializers import (
     CreatePurchaseOrderSerializer,
@@ -7,10 +13,14 @@ from .serializers import (
 from .models import PurchaseOrder
 
 
-class PurchaseViewSet(ModelViewSet):
+class PurchaseViewSet(CreateModelMixin,
+                      ListModelMixin,
+                      RetrieveModelMixin,
+                      UpdateModelMixin,
+                      GenericViewSet):
     queryset = PurchaseOrder.objects.all()
     permission_classes = [IsCashierUser]
-    
+
     def get_serializer_class(self):
         if self.action in ['update', 'partial_update', 'create']:
             return CreatePurchaseOrderSerializer
