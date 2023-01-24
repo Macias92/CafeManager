@@ -20,6 +20,7 @@ class PurchaseViewSet(CustomLoggingViewSetMixin,
                       RetrieveModelMixin,
                       UpdateModelMixin,
                       GenericViewSet):
+    """ViewSet for purchasing, where user can create, retrieve, udpate simple purchase and list all purchases"""
     queryset = PurchaseOrder.objects.all()
     permission_classes = [IsCashierUser]
 

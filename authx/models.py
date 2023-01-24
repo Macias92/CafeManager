@@ -6,6 +6,8 @@ from .common import ROLES
 
 
 class CustomUserManager(BaseUserManager):
+    """CustomUserManager based on BaseUserManager, allows to create new Custom User object with specific role."""
+
     def create_user(self, username, email, password=None):
         if not email:
             raise ValueError('User must have an email address')
@@ -68,6 +70,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    """Custom User model extended and adapted to need of the app"""
     username = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)

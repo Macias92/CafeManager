@@ -12,6 +12,7 @@ from cafemanager.mixins import CustomLoggingViewSetMixin
 
 
 class PurchaseListView(CustomLoggingViewSetMixin, ListAPIView):
+    """Returns a list of current orders"""
     queryset = PurchaseOrder.objects.all()
     serializer_class = ListPurchaseOrderSerializer
     permission_classes = [AllowAny]
@@ -26,6 +27,7 @@ class PurchaseListView(CustomLoggingViewSetMixin, ListAPIView):
 
 
 class CancellingPurchaseView(CustomLoggingViewSetMixin, APIView):
+    """View allows to cancel purchase"""
     permission_classes = [IsCashierUser]
 
     def _get_purchase_id(self):

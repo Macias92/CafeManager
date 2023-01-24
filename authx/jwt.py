@@ -7,6 +7,9 @@ import hmac
 import hashlib
 
 
+"""This part of code is generating a Json Web Token. It is needed to User authorization during sending requests to the app"""
+
+
 def defaultconverter(c):
     if isinstance(c, datetime):
         return c.__str__()

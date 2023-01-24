@@ -17,6 +17,7 @@ User = get_user_model()
 
 
 class LoginView(APIView):
+    """Allows to login to the app and returns the generated Json Web Token for logged user"""
     authentication_classes = []
     permission_classes = []
 
@@ -42,6 +43,7 @@ class LoginView(APIView):
 
 
 class ActivationUserEmailView(APIView):
+    """Authorisation view of user account, it returns information about success or failure of user accout activation"""
     authentication_classes = []
     permission_classes = []
 

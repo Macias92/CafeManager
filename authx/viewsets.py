@@ -18,6 +18,7 @@ User = get_user_model()
 
 
 class UserViewSet(ModelViewSet):
+    """ViewSet of User model"""
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsOwnerUser]
@@ -29,6 +30,7 @@ class UserViewSet(ModelViewSet):
         return Response(status=HTTP_204_NO_CONTENT)
 
     def send_auth_email(self, user):
+        """Returns email activation for new registered user"""
         current_site = get_current_site(self.request)
         domain = current_site.domain
         uid = urlsafe_base64_encode(force_bytes(user.pk))

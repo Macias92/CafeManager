@@ -3,7 +3,9 @@ from django.contrib.admin.models import ADDITION, CHANGE, ContentType, DELETION,
 
 
 class CustomLoggingMixin:
+    """Returns logs of logged User"""
     def _visitor_ip_address(self):
+        """Returns ip address of logged user"""
         x_forwarded_for = self.request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[0]
@@ -12,9 +14,11 @@ class CustomLoggingMixin:
         return ip
 
     def _visitor_agent(self):
+        """Returns the browser agent"""
         return self.request.META['HTTP_USER_AGENT']
 
     def log(self, operation, instance):
+        """Creates a log"""
         if operation == ADDITION:
             action_message = _('Created')
         if operation == CHANGE:

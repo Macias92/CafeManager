@@ -12,6 +12,7 @@ from menu.models import MenuItem, Component
 
 
 class ListPurchaseOrderSerializer(ModelSerializer):
+    """Serializer of the list of purchased orders"""
     status = CharField(source='get_status_display')
 
     class Meta:
@@ -20,6 +21,7 @@ class ListPurchaseOrderSerializer(ModelSerializer):
 
 
 class PurchaseOrderSeralizer(ModelSerializer):
+    """Serializer of the purchase order object"""
     items = CashierMenuItemSerializer(many=True)
 
     class Meta:

@@ -11,12 +11,13 @@ from .serializers import (
     ManagerComponentSerializer,
     CreateMenuItemSerializer,
     CreateMenuSerializer,
-    
+
 )
 from .models import Menu, MenuItem, Component
 
 
 class MenuViewSet(ModelViewSet):
+    """ViewSet for Menu object"""
     queryset = Menu.objects.all()
     permission_classes = [MenuViewPermission]
 
@@ -34,6 +35,7 @@ class MenuViewSet(ModelViewSet):
 
 
 class MenuItemViewSet(ModelViewSet):
+    """ViewSet for items of the menu object"""
     queryset = MenuItem.objects.all()
     permission_classes = [MenuViewPermission]
 
@@ -51,6 +53,7 @@ class MenuItemViewSet(ModelViewSet):
 
 
 class ComponentViewSet(ModelViewSet):
+    """ViewSet for Component object"""
     queryset = Component.objects.all()
     permission_classes = [MenuViewPermission]
 

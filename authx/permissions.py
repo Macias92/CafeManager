@@ -1,6 +1,9 @@
 from rest_framework.permissions import BasePermission
 
 
+"""Permissions created for limiting the capabilities of a specific users."""
+
+
 class IsCashierUser(BasePermission):
     def has_permission(self, request, view):
         return bool(request.user.is_authenticated and request.user.role >= 0)
@@ -22,6 +25,8 @@ class IsOwnerUser(BasePermission):
 
 
 class MenuViewPermission(BasePermission):
+    """Limitation for each user connected with displaying the content of the Menu object view"""
+
     def has_permission(self, request, view):
         if view.action in ['retrieve', 'list']:
             return bool(request.user.is_authenticated and request.user.role >= 1)
