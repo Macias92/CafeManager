@@ -11,9 +11,11 @@ from .serializers import (
     PurchaseOrderSeralizer
 )
 from .models import PurchaseOrder
+from cafemanager.mixins import CustomLoggingViewSetMixin
 
 
-class PurchaseViewSet(CreateModelMixin,
+class PurchaseViewSet(CustomLoggingViewSetMixin,
+                      CreateModelMixin,
                       ListModelMixin,
                       RetrieveModelMixin,
                       UpdateModelMixin,

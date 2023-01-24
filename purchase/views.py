@@ -8,13 +8,14 @@ from authx.permissions import IsCashierUser
 from datetime import datetime
 from .models import PurchaseOrder
 from .serializers import ListPurchaseOrderSerializer, PurchaseOrderCancellingSerializer
+from cafemanager.mixins import CustomLoggingViewSetMixin
 
 
-class PurchaseListView(ListAPIView):
+class PurchaseListView(CustomLoggingViewSetMixin, ListAPIView):
     queryset = PurchaseOrder.objects.all()
     serializer_class = ListPurchaseOrderSerializer
     permission_classes = [AllowAny]
-    
+
     def get_queryset(self):
         today = datetime.now()
         queryset = PurchaseOrder.objects.filter(created_date__date=today)
@@ -24,7 +25,7 @@ class PurchaseListView(ListAPIView):
         return queryset
 
 
-class CancellingPurchaseView(APIView):
+class CancellingPurchaseView(CustomLoggingViewSetMixin, APIView):
     permission_classes = [IsCashierUser]
 
     def _get_purchase_id(self):
